@@ -2,7 +2,7 @@
 Tools for the Playstation port of Diablo.
 
 ### dstream
-Dumps the contents stream files (.DIR/.BIN pair). These contain all of the game data, including binary overlays.
+Dumps the contents of stream files (.DIR/.BIN pair). These contain all of the game data, including binary overlays.
 
 Usage: dstream [dir] [bin] [types...]
 
@@ -15,7 +15,7 @@ Two batch scripts are provided, **dump_all.bat** to extract all files and **dump
 Note that both the US and European versions of Diablo contain English, French, German, and Swedish, but do not contain Japanese. The Japanese version is also needed to extract the Japanese files.
 
 ### dbank
-Dumps the contents sound bank files (.BOF/.BNK pair). These files are embedded in the stream files, and contain sound effects stored in VAG format.
+Dumps the contents of sound bank files (.BOF/.BNK pair). These files are embedded in the stream files, and contain sound effects stored in VAG format.
 
 Usage: dbank [bof] [bnk]
 
