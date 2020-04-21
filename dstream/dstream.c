@@ -60,7 +60,7 @@ void DumpRegularFile(STREAM *pStream, unsigned char *pBin)
 {
 	FILE *pOutput;
 	unsigned char *p;
-	unsigned long checksum, computed;
+	uint32_t checksum, computed;
 	int i, filesize;
 
 	pOutput = fopen(pStream->Name, "wb");
