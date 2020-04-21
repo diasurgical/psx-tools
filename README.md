@@ -34,6 +34,16 @@ Usage: vag2wav [vag] [wav]
 
 ## Compiling
 A Visual Studio workspace is provided to compile the tools. Works with Visual C++ 5.0 and newer.
+For POSIX-compatable OSes, a Makefile is provided.
+
+## Creating Localized Audio MPQs
+The bash-script `build_mpq.sh` creates patch MPQs for the PC version of Diablo where voice actors are speaking in
+English (stream1.mpq), French (stream2.mpq), German (stream3.mpq), and Swedish (stream4.mpq). The script assumes
+that the content of the PS1 CDROM is in the folder `ps1_assets`, and that `smpq` is installed on your system.
+On Ubuntu-flavoured OSes, `smpq` can be installed by issuing the following command: `sudo apt-get install smpq`.
+
+To use one of the patches with DevilutionX, rename it to `patch_rt.mpq` and place it in the same folder
+as `diabdat.mpq`, then launch Diablo
 
 # Credits
 - **dstream** and **dbank** written by GalaXyHaXz
