@@ -54,7 +54,7 @@ void WriteVAGHeader(FILE *pFile, bank_entry *pBank, char *name)
 
 	memset(&fileHead, 0, sizeof(fileHead));
 
-	fileHead.magic = SwapEndian32('VAGp');
+	fileHead.magic = SwapEndian32(0x56414770); // 'VAGp'
 	fileHead.version = SwapEndian32(4);
 	fileHead.size = SwapEndian32(pBank->len);
 	fileHead.rate = SwapEndian32(GetVagRate(pBank, name));

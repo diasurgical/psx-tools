@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // uncomment to use old version, for early alpha PSX builds
 // #define OLD_STREAM_VERSION
@@ -14,6 +15,19 @@
 int numexts = 0;
 int extmode = 0;
 char extensions[MAX_EXTENSIONS][4 + 1];
+
+
+char *LowerCase(char *str) {
+	unsigned char *p = (unsigned char *)str;
+
+	while (*p)
+	{
+		*p = tolower((unsigned char)*p);
+		p++;
+	}
+	return str;
+}
+
 
 unsigned char *LoadBinaryFile(char *file, int *pdwSize)
 {
@@ -173,7 +187,7 @@ int DumpByExt(STREAM *pStream, unsigned char *pBin)
 					ext[j] = name[j + i];
 				}
 			}
-			strlwr(ext);
+			LowerCase(ext);
 			if(extmode) {
 				found = 0;
 				for(j = 0; j < numexts && !found; j++) {
@@ -224,7 +238,7 @@ int main(int argc, char *argv[])
 		memset(extensions, 0, sizeof(extensions));
 		for(i = 0; i < numexts; i++) {
 			strncpy(extensions[i], pszFileTypes[i], 4);
-			strlwr(extensions[i]);
+			LowerCase(extensions[i]);
 		}
 	}
 
