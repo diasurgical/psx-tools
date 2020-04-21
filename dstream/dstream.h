@@ -9,7 +9,7 @@ typedef struct VagBlock {
 	char unk08[120];
 } VagBlock;
 
-#define VAG_MAGIC    'VAGp'
+#define VAG_MAGIC    0x56414770 // 'VAGp'
 typedef struct VagHeader {
 	int magic;
 	int version;
@@ -43,7 +43,7 @@ typedef struct STREAM {
 
 #endif
 
-#define LDIR_MAGIC   'LDIR'
+#define LDIR_MAGIC   0x4c444952 // 'LDIR'
 typedef struct LDIRS {
 	int magic;
 	int ncount;
