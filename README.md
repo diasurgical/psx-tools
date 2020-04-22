@@ -39,9 +39,9 @@ Usage: textdump [file]
 
 - file: A game text data file, e.g.,  MAINTXT.ENG and MAINTXT.SWE.
 
-Note that resulting strings are ISO-8859-14 encoded. Use `iconv` to convert them to your encoding:
+Note that resulting strings are windows-1252 encoded. Use `iconv` to convert them to your encoding:
 ```console
-psx-tools$ ./textdump.bin MAINTXT.ENG | iconv -f ISO-8859-14 > MAINTXT.ENG.txt
+psx-tools$ ./textdump.bin MAINTXT.ENG | iconv -f windows-1252 > MAINTXT.ENG.txt
 ```
 
 

@@ -136,9 +136,10 @@ main(int argc, char *argv[]) {
     exit(1);
   }
 
+  // first two bytes encodes the header size
   i = (uint8_t)str[1] << 8 | (uint8_t)str[0];
 
-  //Next follows null-terminated (iso-8859-14?) strings
+  // next follows null-terminated (windows-1252?) strings
   while(i < size) {
     if(str[i]) {
       dump_string(&str[i], size - i);
