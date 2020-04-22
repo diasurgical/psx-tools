@@ -103,12 +103,19 @@ dump_string(const char* str, size_t maxlen) {
 }
 
 
+static uint16_t
+bin2u16(unsigned char *ptr) {
+  return (uint8_t)ptr[1] << 8 | (uint8_t)ptr[0];
+}
+
+
 int
 main(int argc, char *argv[]) {
   FILE *fp;
   size_t size, i;
   char* str;
-
+  uint32_t addr;
+  
   if(argc < 2) {
     fprintf(stderr, "Usage: textdump [file]\n");
     return 0;
@@ -130,25 +137,16 @@ main(int argc, char *argv[]) {
 
   str[size] = '\0';
 
-  i = 0;
-  if(size < 4) {
+  if(size < 2) {
     fprintf(stderr, "Unexpected end of file\n");
     exit(1);
   }
 
-  // first two bytes encodes the header size
-  i = (uint8_t)str[1] << 8 | (uint8_t)str[0];
-
-  // next follows null-terminated (windows-1252?) strings
-  while(i < size) {
-    if(str[i]) {
-      dump_string(&str[i], size - i);
-      i += strnlen(&str[i], size - i);
-    } else {
-      i++;
-    }
+  for(i=2; i<bin2u16(str) - 2; i+=4) {
+    addr = bin2u16(&str[2 + i]) | bin2u16(&str[i]) << 16;
+    dump_string(&str[addr], size - addr);
   }
-
+  
   free(str);
 
   return 0;
