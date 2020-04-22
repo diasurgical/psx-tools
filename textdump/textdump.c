@@ -136,11 +136,7 @@ main(int argc, char *argv[]) {
     exit(1);
   }
 
-  // there is a binary preemble of the format XX YY 00 00,
-  // Lets just skip that one
-  while(i < size - 4 && !str[i+2] && !str[i+3]) {
-    i += 4;
-  }
+  i = (uint8_t)str[1] << 8 | (uint8_t)str[0];
 
   //Next follows null-terminated (iso-8859-14?) strings
   while(i < size) {
