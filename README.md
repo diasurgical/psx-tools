@@ -32,6 +32,19 @@ Usage: vag2wav [vag] [wav]
 - vag: .VAG sound file.
 - wav: .WAV sound file.
 
+### textdump
+Outputs strings from a game text data file as C/C++ quoted and escaped strings to stdout.
+
+Usage: textdump [file]
+
+- file: A game text data file, e.g.,  MAINTXT.ENG and MAINTXT.SWE.
+
+Note that resulting strings are windows-1252 encoded. Use `iconv` to convert them to your encoding:
+```console
+psx-tools$ ./textdump.bin MAINTXT.ENG | iconv -f windows-1252 > MAINTXT.ENG.txt
+```
+
+
 ## Compiling
 A Visual Studio workspace is provided to compile the tools. Works with Visual C++ 5.0 and newer.
 For POSIX-compatable OSes, a Makefile is provided.
@@ -48,3 +61,4 @@ as `diabdat.mpq`, then launch Diablo
 # Credits
 - **dstream** and **dbank** written by GalaXyHaXz
 - **vag2wav** taken from the [psxsdk](https://github.com/ColdSauce/psxsdk)
+- **textdump** written by John Törnblom
