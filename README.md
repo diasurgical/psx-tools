@@ -55,7 +55,7 @@ English (stream1.mpq), French (stream2.mpq), German (stream3.mpq), and Swedish (
 that the content of the PS1 CDROM is in the folder `ps1_assets`, and that `smpq` is installed on your system.
 On Ubuntu-flavoured OSes, `smpq` can be installed by issuing the following command: `sudo apt-get install smpq`.
 
-To use one of the patches with DevilutionX, rename it to `patch_rt.mpq` and place it in the same folder
+To use one of the patches with DevilutionX, rename it to `<Language Code>.mpq` and place it in the same folder
 as `diabdat.mpq`, then launch Diablo
 
 # Credits
