@@ -32,7 +32,7 @@ for DIR in "$PSXDIR"/*.DIR; do
     TMP="$(basename "$DIR")"
     mkdir -p "$TMP"
 
-    (cd "$TMP"; "$DSTREAM" "$DIR" "${DIR%.DIR}.bin" > /dev/null)
+    (cd "$TMP"; "$DSTREAM" "$DIR" "${DIR%.DIR}.BIN" > /dev/null)
 
     # Convert extracted VAG audio files to WAV
     for VAG in $TMP/*.VAG; do
@@ -46,14 +46,18 @@ for DIR in "$PSXDIR"/*.DIR; do
 done
 
 # Build MPQ files using mapping definitions
-for STREAM in STREAM*; do
+for STREAM in STREAM?.DIR; do
+    # Convert directory name to lowercase and remove .DIR suffix (bash 3.2 compatible)
+    STREAM_BASE="${STREAM%.DIR}"
+    STREAM_LOWER=$(echo "$STREAM_BASE" | tr '[:upper:]' '[:lower:]')
+
     mkdir -p "$STREAM/mpq"
     while read -r SRC DST; do
 	mkdir -p "$(dirname "$STREAM/mpq/$DST")"
 	cp "$STREAM/$SRC" "$STREAM/mpq/$DST"
-    done < "$SCRIPTDIR/${STREAM%.DIR}.map"
+    done < "$SCRIPTDIR/$STREAM_LOWER.map"
 
-    MPQ="$SCRIPTDIR/${STREAM%.DIR}.mpq"
+    MPQ="$SCRIPTDIR/$STREAM_LOWER.mpq"
     rm -rf "$MPQ"
     smpq -M 1 -C none -c "$MPQ"
     (cd "$STREAM/mpq"; find * -type f -exec smpq -a -C none "$MPQ" "{}" \;)
