@@ -11,11 +11,11 @@ VAG2WAV=$SCRIPTDIR/vag2wav.bin
 
 
 TEMPDIR=$(mktemp -d)
-#trap "rm -rf $TEMPDIR" EXIT
+trap "rm -rf $TEMPDIR" EXIT
 
 cd $TEMPDIR
 
-for DIR in $PSXDIR/*.dir; do
+for DIR in $PSXDIR/*.DIR; do
     TMP=$(basename $DIR)
     mkdir -p $TMP
 
@@ -30,7 +30,7 @@ for DIR in $PSXDIR/*.dir; do
 #    done
 done
 
-for STREAM in stream*; do
+for STREAM in STREAM*; do
     mkdir -p $STREAM/mpq
     while read -r SRC DST; do
 	mkdir -p $(dirname $STREAM/mpq/$DST)
@@ -38,6 +38,7 @@ for STREAM in stream*; do
     done < $SCRIPTDIR/${STREAM::-4}.map
 
     MPQ=$SCRIPTDIR/${STREAM::-4}.mpq
+    rm -rf $MPQ
     smpq -M 1 -C none -c $MPQ
     (cd $STREAM/mpq; find * -type f -exec smpq -a -C none $MPQ "{}" \;)
 done
