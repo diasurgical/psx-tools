@@ -51,12 +51,22 @@ For POSIX-compatable OSes, a Makefile is provided.
 
 ## Creating Localized Audio MPQs
 The bash-script `build_mpq.sh` creates patch MPQs for the PC version of Diablo where voice actors are speaking in
-English (stream1.mpq), French (stream2.mpq), German (stream3.mpq), and Swedish (stream4.mpq). The script assumes
+English (stream1.mpq), French (stream2.mpq), German (stream3.mpq), and Swedish (stream4.mpq), Japanese (stream5.mpq). The script assumes
 that the content of the PS1 CDROM is in the folder `ps1_assets`, and that `smpq` is installed on your system.
 On Ubuntu-flavoured OSes, `smpq` can be installed by issuing the following command: `sudo apt-get install smpq`.
+On macOS, `smpq` is not usually available via package managers. Instead, you can build and install it from source using the official DevilutionX helper script:
 
-To use one of the patches with DevilutionX, rename it to `<Language Code>.mpq` and place it in the same folder
-as `diabdat.mpq`, then launch Diablo
+https://github.com/diasurgical/DevilutionX/blob/master/tools/build_and_install_smpq.sh
+
+Example:
+
+```sh
+curl -O https://raw.githubusercontent.com/diasurgical/DevilutionX/master/tools/build_and_install_smpq.sh
+sh build_and_install_smpq.sh
+```
+
+To use one of the patches with DevilutionX, rename it to `<Language Code>.mpq` (e.g. `en.mpq`) and place it in the same folder as `diabdat.mpq`, then launch Diablo.
+
 
 # Credits
 - **dstream** and **dbank** written by GalaXyHaXz
